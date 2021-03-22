@@ -22,33 +22,39 @@ class App extends React.Component {
     }
 
     handleValidation= () => {
+	    let isValid = true;
         const mobile= this.state.mobile;
         // const password= this.state.password;
         // const password_error
 
-        if(mobile.length > 10) {
-            this.setState({
-                mobile_error: 'mobile length must be 10 digit'
-            })
+        if(mobile.length > 10 || mobile.length < 10) {
+           isValid = false;
+            mobile_error: 'mobile length must be 10 digit'
         }
-
-        // if(password.length >= 5 && password.length <= 10) {
-        //     password_error= 'Password should be between 5 to 10 characters'
-        // }
-        // else if(!password.include([a-zA-Z0-9])){
-        //     password_error= 'Password should have at least one special character, one Capital latter, one small character, one numeric character'
-        // }
+        if(password.length >= 5 && password.length <= 10) {
+	    isValid = false;
+            password_error= 'Password should be between 5 to 10 characters'
+        }
+        else if(!password.include([a-zA-Z0-9])){
+		isValid = false;
+            password_error= 'Password should have at least one special character, one Capital latter, one small character, one numeric character'
+        }
+	    this.setState(mobile_error, password_error});
+   	 return isValid;
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
+	 if (this.handleValidation()) {
         const formData= {
             fname: this.state.fname,
             lname: this.state.lname,
+	    mobile: this.state.mobile,
             email: this.state.email,
             Password: this.state.password
         }
         console.log("formData",formData)
+	 }		 
     }
 
     render() {
