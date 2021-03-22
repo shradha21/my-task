@@ -24,9 +24,8 @@ class App extends React.Component {
     handleValidation= () => {
 	    let isValid = true;
         const mobile= this.state.mobile;
-        // const password= this.state.password;
-        // const password_error
-
+        const password= this.state.password;
+        
         if(mobile.length > 10 || mobile.length < 10) {
            isValid = false;
             mobile_error: 'mobile length must be 10 digit'
